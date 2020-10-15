@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Streets</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <h2>List of streets</h2>
+
+        <table>
+            <tr>
+                <th>Idno</th>
+                <th>Tail</th>
+                <th>Head</th>
+                <th>Length [m]</th>
+                <th>Speed [km/h]</th>
+            </tr>
+            
+            <tr th:each="street : ${streets}">
+                <td th:text="${street.id.idno}">Idno</td>
+                <td th:text="${street.id.tail}">Tail</td>
+                <td th:text="${street.head}">Head</td>
+                <td th:text="${street.leng}">Length</td>
+                <td th:text="${street.sped}">Speed</td>
+            </tr>
+        </table>
+
+    </body>
+</html>
