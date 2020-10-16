@@ -1,7 +1,7 @@
 /**
  * Consumer.java
  */
-package com.sdc.springboot_example.jms.consumer;
+package com.sdc.springboot_example.jms.struc1;
 
 import javax.jms.JMSException;
 import javax.jms.Message;

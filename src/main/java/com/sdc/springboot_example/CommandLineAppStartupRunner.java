@@ -25,7 +25,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     @Autowired
     private JmsTemplate template;
     
-    @Value("${myqueue}")
+    @Value("${queue1}")
     private String queue;
 
 

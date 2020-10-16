@@ -1,7 +1,7 @@
 /**
  * MessagingConfig.java
  */
-package com.sdc.springboot_example.jms;
+package com.sdc.springboot_example.jms.struc1;
 
 import javax.jms.ConnectionFactory;
 
@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.listener.DefaultMessageListenerContainer;
-
-import com.sdc.springboot_example.jms.consumer.Consumer;
 
 /**
  * The @Configuration annotation tells Spring to configure any declared methods annotated with the @Bean annotations.
@@ -31,7 +29,7 @@ public class MessagingConfig {
     @Autowired
     private ConnectionFactory connectionFactory;
     
-    @Value("${myqueue}")
+    @Value("${queue1}")
     private String queue;
 
     @Bean

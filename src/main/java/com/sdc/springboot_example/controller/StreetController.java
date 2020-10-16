@@ -26,7 +26,7 @@ public class StreetController {
     @Autowired
     private JmsTemplate template;
     
-    @Value("${myqueue}")
+    @Value("${queue2}")
     private String queue;
     
     @Autowired
