@@ -1,7 +1,7 @@
 /**
  * MessagingConfig.java
  */
-package com.sdc.springboot_example.jms.struc1;
+package com.sdc.springboot_example.jms.consumer.struc1;
 
 import javax.jms.ConnectionFactory;
 

@@ -1,7 +1,7 @@
 /**
  * Receiver.java
  */
-package com.sdc.springboot_example.jms.struc2;
+package com.sdc.springboot_example.jms.consumer.struc2;
 
 import org.apache.activemq.artemis.jms.client.ActiveMQTextMessage;
 import org.springframework.jms.annotation.JmsListener;

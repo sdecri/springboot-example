@@ -1,7 +1,7 @@
 /**
  * MyCurrentConnectionFactory.java
  */
-package com.sdc.springboot_example.jms.struc2;
+package com.sdc.springboot_example.jms.consumer.struc2;
 
 import javax.jms.ConnectionFactory;
 

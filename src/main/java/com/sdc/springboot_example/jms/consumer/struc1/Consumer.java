@@ -1,11 +1,15 @@
 /**
  * Consumer.java
  */
-package com.sdc.springboot_example.jms.struc1;
+package com.sdc.springboot_example.jms.consumer.struc1;
+
+import java.util.Objects;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
+
+import com.sdc.springboot_example.model.Person;
 
 /**
  * @author Simone.DeCristofaro
@@ -18,7 +22,12 @@ public class Consumer implements MessageListener{
     @Override
     public void onMessage(Message message) {
         try {
-            LOG.info("Received message: " + message.getBody(Object.class));
+            Object messageBody = message.getBody(Object.class);
+            if(messageBody instanceof Person) {
+                LOG.info("The arrived message is a Person ^_^");
+            }
+            String messageContent = Objects.toString(messageBody);
+            LOG.info("> Received message: " + messageContent);
         }catch (JMSException ex) {
             ex.printStackTrace();
         }

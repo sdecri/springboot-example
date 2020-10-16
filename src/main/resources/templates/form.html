@@ -1,0 +1,10 @@
+<form method="post" th:action="@{/submit}" th:object="${person}">
+	<label for="fname">First name:</label> 
+	<input type="text" th:field="*{fname}"><br> <br>
+	<label for="lname">Last name:</label>
+	<input type="text" th:field="*{lname}"><br> <br>
+	<input type="submit" value="Submit">
+</form>
+<div th:if="${person.fname != null}">Sent person: 
+	<span th:text="${person.fname + ' ' + person.lname}"></span>
+</div>
