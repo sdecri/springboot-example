@@ -1,7 +1,7 @@
 /**
  * MessagingConfig.java
  */
-package com.sdc.springboot_example.jms.consumer.struc1;
+package com.sdc.springboot_example.jms.embedded;
 
 import javax.jms.ConnectionFactory;
 
@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jms.listener.DefaultMessageListenerContainer;
+
+import com.sdc.springboot_example.Application;
 
 /**
  * The @Configuration annotation tells Spring to configure any declared methods annotated with the @Bean annotations.
@@ -24,6 +27,7 @@ import org.springframework.jms.listener.DefaultMessageListenerContainer;
  * Oct 15, 2020
  */
 @Configuration
+@Profile(Application.PROFILE_RECEIVER_1)
 public class MessagingConfig {
 
     @Autowired

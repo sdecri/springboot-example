@@ -1,4 +1,4 @@
-package com.sdc.springboot_example;
+package com.sdc.springboot_example.command_line_runner;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,12 +6,11 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 import com.sdc.springboot_example.model.Strt;
+import com.sdc.springboot_example.scheduler.TreScheduler;
 import com.sdc.springboot_example.service.strt.StrtService;
 
 @Component
@@ -22,12 +21,14 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     @Autowired
     private StrtService strtService;
     
-    @Autowired
-    private JmsTemplate template;
+//    @Autowired
+//    private JmsTemplate template;
+//    
+//    @Value("${queue1}")
+//    private String queue;
     
-    @Value("${queue1}")
-    private String queue;
-
+    @Autowired
+    private TreScheduler treScheduler;
 
     @Override
     public void run(String... args) throws Exception {
@@ -53,12 +54,11 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                         .toArray(size -> new String[size]))));
 
         
-        LOG.info("Sending> ...");
-
-        template.convertAndSend(queue, "Hello World from Spring Boot!");
+//        LOG.info("Sending> ...");
+//        template.convertAndSend(queue, "Hello World from Spring Boot!");
 //        LOG.info("Application end");
         
-        
+        treScheduler.sendSignal();
         
     }
     

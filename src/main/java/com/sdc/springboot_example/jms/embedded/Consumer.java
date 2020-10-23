@@ -1,7 +1,7 @@
 /**
  * Consumer.java
  */
-package com.sdc.springboot_example.jms.consumer.struc1;
+package com.sdc.springboot_example.jms.embedded;
 
 import java.util.Objects;
 
