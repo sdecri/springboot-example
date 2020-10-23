@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
@@ -16,6 +17,7 @@ import org.springframework.jms.support.converter.MessageType;
 import com.sdc.springboot_example.Application;
 
 @Configuration
+@EnableJms
 @Profile(Application.PROFILE_PRODUCER_2)
 public class ActiveMQConfig {
 
@@ -45,16 +47,23 @@ public class ActiveMQConfig {
     public MessageConverter jacksonJmsMessageConverter() {
         MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
         converter.setTargetType(MessageType.TEXT);
-        converter.setTypeIdPropertyName("_type");
+        converter.setTypeIdPropertyName("_tre_message");
         return converter;
     }
     
     // needed to receive messages
     @Bean
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(){
+    public DefaultJmsListenerContainerFactory jmsActiveMQListenerContainerFactory(){
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConnectionFactory(activeMQConnectionFactory());
         factory.setPubSubDomain(true);
+        factory.setMessageConverter(jacksonJmsMessageConverter());
         return factory;
     }
 }
+
+
+
+
+
+

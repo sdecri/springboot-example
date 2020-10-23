@@ -10,7 +10,7 @@ import com.sdc.springboot_example.Application;
 import com.sdc.springboot_example.model.tre.TreStatusMessage;
 
 @Component
-@Profile(Application.PROFILE_PRODUCER_2 + " | " + Application.PROFILE_PRODUCER_3)
+@Profile(Application.PROFILE_PRODUCER_2)
 public class JmsProducer {
 
     private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(JmsProducer.class);
