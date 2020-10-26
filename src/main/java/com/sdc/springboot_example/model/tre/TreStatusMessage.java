@@ -1,16 +1,16 @@
 
 package com.sdc.springboot_example.model.tre;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
-
 @Getter @Setter @NoArgsConstructor @ToString @AllArgsConstructor
-public class TreStatusMessage{
+public class TreStatusMessage implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private String status;
@@ -18,12 +18,12 @@ public class TreStatusMessage{
     private Double progress;
     private String instanceName;
     private SimulationGroup simulationGroup;
-    private Integer dayTypeTRE;
+    private Integer dayType;
     private String timeToNextSim;
     private Integer init;
     private Integer ends;
     private String simulationDay;
     private Integer lastDay;
     private String lastRunEndTime;
-    
+    private String MessageID;
 }

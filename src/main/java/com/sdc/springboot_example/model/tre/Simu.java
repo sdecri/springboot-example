@@ -11,7 +11,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @NoArgsConstructor @ToString @AllArgsConstructor
-public class Simu {
+public class Simu implements Serializable {
     
     private static final long serialVersionUID = 1L;
     private Boolean base;

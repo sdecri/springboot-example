@@ -10,13 +10,13 @@ import com.sdc.springboot_example.Application;
 import com.sdc.springboot_example.model.tre.TreStatusMessage;
 
 @Component
-@Profile(Application.PROFILE_PRODUCER_2)
-public class JmsProducer {
+@Profile(Application.PROFILE_JMS_ACTIVEMQ)
+public class ActiveMQProducer {
 
-    private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(JmsProducer.class);
+    private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(ActiveMQProducer.class);
     
     @Autowired
-    JmsTemplate jmsTemplate;
+    private JmsTemplate activeMQJmsTemplate;
 
     @Value("${active-mq.topic}")
     private String topic;
@@ -24,7 +24,7 @@ public class JmsProducer {
     public void sendMessage(TreStatusMessage message){
         try{
             LOG.info("Attempting Send message to Topic: "+ topic);
-            jmsTemplate.convertAndSend(topic, message);
+            activeMQJmsTemplate.convertAndSend(topic, message);
         } catch(Exception e){
             LOG.error("Recieved Exception during send Message: ", e);
         }

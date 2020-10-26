@@ -7,14 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.sdc.springboot_example.Application;
+import com.sdc.springboot_example.jms.artemis.embedded.EmbeddedArtemisProducer;
 import com.sdc.springboot_example.model.Strt;
 import com.sdc.springboot_example.service.strt.IStrtService;
 
@@ -23,14 +22,11 @@ import com.sdc.springboot_example.service.strt.IStrtService;
  * Oct 14, 2020
  */
 @Controller
-@Profile(Application.PROFILE_CONTROLLER)
+@Profile(Application.PROFILE_CONTROLLER + " & " +  Application.PROFILE_JMS_ARTEMIS_EMBEDDED)
 public class StreetController {
 
     @Autowired
-    private JmsTemplate template;
-    
-    @Value("${queue2}")
-    private String queue;
+    private EmbeddedArtemisProducer producer;
     
     @Autowired
     private IStrtService strtService;
@@ -42,8 +38,10 @@ public class StreetController {
 
         model.addAttribute("streets", strts);
         
-        template.convertAndSend(queue, String.format("> [JMS messages] Showing streets: %s"
-                , Arrays.toString(strts.stream().map(Object::toString).toArray(size -> new String[size]))));
+        String message = String.format("> [JMS messages] Showing streets: %s"
+                , Arrays.toString(strts.stream().map(Object::toString).toArray(size -> new String[size])));
+        
+        producer.send(message);
 
         return "showStreets";
     }

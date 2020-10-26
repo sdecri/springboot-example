@@ -18,7 +18,7 @@ import com.sdc.springboot_example.Application;
 
 @Configuration
 @EnableJms
-@Profile(Application.PROFILE_PRODUCER_2)
+@Profile(Application.PROFILE_JMS_ACTIVEMQ)
 public class ActiveMQConfig {
 
     @Value("${active-mq.broker-url}")
@@ -34,7 +34,7 @@ public class ActiveMQConfig {
 
     // Needed to send messages
     @Bean
-    public JmsTemplate jmsTemplate(){
+    public JmsTemplate activeMQJmsTemplate(){
         JmsTemplate jmsTemplate = new JmsTemplate();
         jmsTemplate.setConnectionFactory(activeMQConnectionFactory());
         jmsTemplate.setPubSubDomain(true);  // enable for Pub Sub to topic. Not Required for Queue.

@@ -7,17 +7,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.sdc.springboot_example.Application;
-import com.sdc.springboot_example.jms.embedded.ArtemisProducer;
+import com.sdc.springboot_example.jms.artemis.embedded.EmbeddedArtemisProducer;
 import com.sdc.springboot_example.model.Person;
 
 @Controller
-@Profile(Application.PROFILE_CONTROLLER + " & " +  Application.PROFILE_PRODUCER_1)
+@Profile(Application.PROFILE_CONTROLLER + " & " +  Application.PROFILE_JMS_ARTEMIS_EMBEDDED)
 public class PersonController {
 
     private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(PersonController.class);
     
     @Autowired
-    private ArtemisProducer producer;
+    private EmbeddedArtemisProducer producer;
 
    
     @RequestMapping("/form")
@@ -31,8 +31,8 @@ public class PersonController {
     @PostMapping("/submit")
     public String submit(@ModelAttribute Person person, Model model){
         model.addAttribute("person", person);
-        LOG.info("First name:" + person.getFname());
-        LOG.info("Last name:" + person.getLname());
+        LOG.info("First name:" + person.getFirstName());
+        LOG.info("Last name:" + person.getLastName());
         producer.send(person);
         //return "redirect:/form";
         return "form";

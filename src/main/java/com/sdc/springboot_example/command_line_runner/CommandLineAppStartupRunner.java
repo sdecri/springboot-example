@@ -10,7 +10,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.sdc.springboot_example.model.Strt;
-import com.sdc.springboot_example.scheduler.TreScheduler;
 import com.sdc.springboot_example.service.strt.StrtService;
 
 @Component
@@ -24,12 +23,10 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 //    @Autowired
 //    private JmsTemplate template;
 //    
-//    @Value("${queue1}")
+//    @Value("${queuePerson}")
 //    private String queue;
-    
-    @Autowired
-    private TreScheduler treScheduler;
 
+    
     @Override
     public void run(String... args) throws Exception {
 
@@ -58,7 +55,6 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 //        template.convertAndSend(queue, "Hello World from Spring Boot!");
 //        LOG.info("Application end");
         
-        treScheduler.sendSignal();
         
     }
     
