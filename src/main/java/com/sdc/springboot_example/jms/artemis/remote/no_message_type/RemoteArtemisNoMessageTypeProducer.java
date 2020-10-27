@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.sdc.springboot_example.Application;
 import com.sdc.springboot_example.model.tre.TreStatusMessage;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Simone.DeCristofaro
@@ -19,9 +20,8 @@ import com.sdc.springboot_example.model.tre.TreStatusMessage;
  */
 @Component
 @Profile(Application.PROFILE_JMS_ARTEMIS_REMOTE_NO_MESSAGE_TYPE)
+@Slf4j
 public class RemoteArtemisNoMessageTypeProducer {
-    
-    private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(RemoteArtemisNoMessageTypeProducer.class);
     
     @Autowired
     private JmsTemplate artemisJmsTemplateNoMessageType;
@@ -32,7 +32,7 @@ public class RemoteArtemisNoMessageTypeProducer {
     
 
     public void send(TreStatusMessage message){
-        LOG.info("> Sending general message...");
+        log.info("> Sending general message...");
         artemisJmsTemplateNoMessageType.convertAndSend(destination, message);
     }
 }

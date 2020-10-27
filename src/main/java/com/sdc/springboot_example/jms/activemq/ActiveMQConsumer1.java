@@ -6,15 +6,15 @@ import org.springframework.stereotype.Component;
 
 import com.sdc.springboot_example.Application;
 import com.sdc.springboot_example.model.tre.TreStatusMessage;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Profile(Application.PROFILE_JMS_ACTIVEMQ)
+@Slf4j
 public class ActiveMQConsumer1 {
 
-    private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(ActiveMQConsumer1.class);
-    
     @JmsListener(destination = "${active-mq.topic}", containerFactory = "jmsActiveMQListenerContainerFactory")
     public void onTreMessage(TreStatusMessage treMessage) {
-        LOG.info(String.format("Received Message from consumer: %s: %s", getClass(), treMessage.toString()));
+        log.info(String.format("Received Message from consumer: %s: %s", getClass(), treMessage.toString()));
     }
 }

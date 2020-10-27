@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 
 import com.sdc.springboot_example.Application;
 import com.sdc.springboot_example.model.tre.TreStatusMessage;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Profile(Application.PROFILE_JMS_ACTIVEMQ)
+@Slf4j
 public class ActiveMQProducer {
 
-    private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(ActiveMQProducer.class);
-    
     @Autowired
     private JmsTemplate activeMQJmsTemplate;
 
@@ -23,10 +23,10 @@ public class ActiveMQProducer {
 
     public void sendMessage(TreStatusMessage message){
         try{
-            LOG.info("Attempting Send message to Topic: "+ topic);
+            log.info("Attempting Send message to Topic: "+ topic);
             activeMQJmsTemplate.convertAndSend(topic, message);
         } catch(Exception e){
-            LOG.error("Recieved Exception during send Message: ", e);
+            log.error("Recieved Exception during send Message: ", e);
         }
     }
     
