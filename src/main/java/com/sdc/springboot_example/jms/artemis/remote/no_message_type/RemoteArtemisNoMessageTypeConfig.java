@@ -85,7 +85,8 @@ public class RemoteArtemisNoMessageTypeConfig {
 //        factory.setDestinationResolver(new DynamicDestinationResolver());
         factory.setConnectionFactory(remoteActiveMQConnectionFactory());
         factory.setMessageConverter(treMessageConverter());
-//        factory.setSessionTransacted(true);
+        // Use the transacted session to reprocess the message in case of error handling it
+        factory.setSessionTransacted(true);
         return factory;
     }
     
