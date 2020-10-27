@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.sdc.springboot_example.Application;
 import com.sdc.springboot_example.model.tre.TreStatusMessage;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Simone.DeCristofaro
@@ -17,13 +18,12 @@ import com.sdc.springboot_example.model.tre.TreStatusMessage;
  */
 @Component
 @Profile(Application.PROFILE_JMS_ARTEMIS_REMOTE)
+@Slf4j
 public class RemoteArtemisConsumer {
     
-    private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(RemoteArtemisConsumer.class);
-
     @JmsListener(destination = "${artemis.remote.topic}", containerFactory = "remoteArtemisJmsListenerContainerFactory")
     public void onMessage(TreStatusMessage message) {
-        LOG.info("> Received message: " + message.toString());
+        log.info("> Received message: " + message.toString());
     }
 
 }

@@ -1,15 +1,11 @@
 /**
  * TreMessageStatusBuilder.java
  */
-package com.sdc.springboot_example.scheduler;
+package com.sdc.springboot_example.model.tre;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
-
-import com.sdc.springboot_example.model.tre.Simu;
-import com.sdc.springboot_example.model.tre.SimulationGroup;
-import com.sdc.springboot_example.model.tre.TreStatusMessage;
 
 /**
  * @author Simone.DeCristofaro
@@ -24,7 +20,7 @@ public class TreMessageStatusBuilder {
     
         Integer dayTypeTRE = 1;
         String status = "waiting";
-        String message = "I'm the TRE message status";
+        String message = "Ready";
         Double progress = 1.;
         String instanceName = "TRE_TATTICO";
         SimulationGroup simulationGroup = TreMessageStatusBuilder.createSimulationGroup();

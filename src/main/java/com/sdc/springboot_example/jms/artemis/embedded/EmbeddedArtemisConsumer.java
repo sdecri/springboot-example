@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.sdc.springboot_example.Application;
 import com.sdc.springboot_example.model.Person;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Simone.DeCristofaro
@@ -18,18 +19,17 @@ import com.sdc.springboot_example.model.Person;
  */
 @Component
 @Profile(Application.PROFILE_JMS_ARTEMIS_EMBEDDED)
+@Slf4j
 public class EmbeddedArtemisConsumer {
     
-    private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(EmbeddedArtemisConsumer.class);
-
     @JmsListener(destination = "${artemis.topic.street}", containerFactory = "embeddedArtemisJmsListenerContainerFactory")
     public void onStreetMessage(Message<String> message) {
-        LOG.info("> Received message: " + message.getPayload());
+        log.info("> Received message: " + message.getPayload());
     }
 
     @JmsListener(destination = "${artemis.topic.person}", containerFactory = "embeddedArtemisJmsListenerContainerFactory")
     public void onPersonMessage(Message<Person> message) {
-        LOG.info("> Received message: " + message.getPayload());
+        log.info("> Received message: " + message.getPayload());
     }    
 
 }

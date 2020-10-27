@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.sdc.springboot_example.Application;
 import com.sdc.springboot_example.model.Person;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Simone.DeCristofaro
@@ -19,9 +20,8 @@ import com.sdc.springboot_example.model.Person;
  */
 @Component
 @Profile(Application.PROFILE_JMS_ARTEMIS_EMBEDDED)
+@Slf4j
 public class EmbeddedArtemisProducer {
-    
-    private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(EmbeddedArtemisProducer.class);
     
     @Autowired
     private JmsTemplate artemisJmsTemplate;
@@ -33,12 +33,12 @@ public class EmbeddedArtemisProducer {
     String queueStreet;
     
     public void send(Person person){
-        LOG.info("> Sending message person...");
+        log.info("> Sending message person...");
         artemisJmsTemplate.convertAndSend(queuePerson, person);
     }
 
     public void send(String message){
-        LOG.info("> Sending general message...");
+        log.info("> Sending general message...");
         artemisJmsTemplate.convertAndSend(queueStreet, message);
     }
 }
