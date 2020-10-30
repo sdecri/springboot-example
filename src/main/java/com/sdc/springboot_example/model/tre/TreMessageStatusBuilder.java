@@ -18,6 +18,7 @@ public class TreMessageStatusBuilder {
      */
     public static TreStatusMessage createTreStatusMessage() {
     
+        String tenantId = "springboot-example";
         Integer dayTypeTRE = 1;
         String status = "waiting";
         String message = "Ready";
@@ -30,9 +31,9 @@ public class TreMessageStatusBuilder {
         Integer ends = 2;
         Integer lastDay = 2;
         String lastRunEndTime = "20/10/22 16:19:31";
-        String MessageId = "message_" + LocalDateTime.now();
         TreStatusMessage treStatusMessage = new TreStatusMessage(
-                status
+                tenantId
+                , status
                 , message
                 , progress
                 , instanceName
@@ -44,7 +45,6 @@ public class TreMessageStatusBuilder {
                 , simulationDay
                 , lastDay
                 , lastRunEndTime
-                , MessageId
                 );
         return treStatusMessage;
     }
@@ -66,7 +66,8 @@ public class TreMessageStatusBuilder {
     
         Boolean base = true;
         Integer idno = 1;
-        List<Object> scen = Arrays.asList("scen1", "scen2");
+        String scen1 = "scen_" + LocalDateTime.now();
+        List<Object> scen = Arrays.asList(scen1, "scen2");
         Integer stat = 1;
         Simu simu1 = new Simu(base, idno, scen, stat);
         base = false;

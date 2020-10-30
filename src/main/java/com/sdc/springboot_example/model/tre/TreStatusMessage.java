@@ -13,6 +13,7 @@ import lombok.ToString;
 public class TreStatusMessage implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private String tenantId;
     private String status;
     private String message;
     private Double progress;
@@ -25,5 +26,4 @@ public class TreStatusMessage implements Serializable {
     private String simulationDay;
     private Integer lastDay;
     private String lastRunEndTime;
-    private String MessageID;
 }
