@@ -16,9 +16,8 @@ public class TreMessageStatusBuilder {
     /**
      * @return
      */
-    public static TreStatusMessage createTreStatusMessage() {
+    public static TreStatusMessage createTreStatusMessage(String tenantId) {
     
-        String tenantId = "springboot-example";
         Integer dayTypeTRE = 1;
         String status = "waiting";
         String message = "Ready";

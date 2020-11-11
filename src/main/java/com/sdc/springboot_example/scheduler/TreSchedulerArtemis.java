@@ -6,6 +6,7 @@ package com.sdc.springboot_example.scheduler;
 import javax.jms.JMSException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -28,12 +29,15 @@ public class TreSchedulerArtemis {
     @Autowired
     public RemoteArtemisProducer producer;
     
+    @Value("${tre.statu.message.tenantId}")
+    private String tenantId;
+    
     @Scheduled(cron = "${schedule.tre.signal}")
     public void sendSignal() throws JMSException {
         log.info("> Schuled task trigger TRE signal");
 //        String message = String.format("Message of time %s", LocalDateTime.now());
         
-        TreStatusMessage treStatusMessage = TreMessageStatusBuilder.createTreStatusMessage();
+        TreStatusMessage treStatusMessage = TreMessageStatusBuilder.createTreStatusMessage(tenantId);
         
         producer.send(treStatusMessage);
     }
